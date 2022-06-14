@@ -1,5 +1,9 @@
+// load dotenv
+require("dotenv/config");
+
 // imports
 const express = require("express");
+const db = require("./config/db");
 
 // consts
 const app = express();
@@ -16,4 +20,5 @@ app.use(express.json());
 app.use("/api/v1/", commentRoute);
 app.use("/api/v1/", postRoute);
 
+db.connect(process.env.MONGO_URI);
 app.listen(PORT, () => console.log("Server is running on port 3000"));
